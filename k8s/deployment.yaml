@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-mtls-app
+  labels:
+    app: hello-mtls-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-mtls-app
+  template:
+    metadata:
+      labels:
+        app: hello-mtls-app
+    spec:
+      containers:
+      - name: hello-mtls-app
+        image: 837735292605.dkr.ecr.us-east-2.amazonaws.com/hello-mtls-app:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
